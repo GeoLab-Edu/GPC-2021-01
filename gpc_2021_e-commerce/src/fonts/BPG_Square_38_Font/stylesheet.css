@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'BPG Square 38';
+    src: url('BPGSquare38.eot');
+    src: url('BPGSquare38.eot?#iefix') format('embedded-opentype'),
+        url('BPGSquare38.woff2') format('woff2'),
+        url('BPGSquare38.woff') format('woff'),
+        url('BPGSquare38.ttf') format('truetype'),
+        url('BPGSquare38.svg#BPGSquare38') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
