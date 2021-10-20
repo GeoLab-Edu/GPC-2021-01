@@ -17,7 +17,7 @@ export default function RelatedProducts({id}) {
     var parameter;
     items.forEach(element => {
         if (element.id === id) {
-            parameter = element.subCategory;
+            parameter = element.Category;
         }
     });
     console.log(parameter)
@@ -28,7 +28,7 @@ export default function RelatedProducts({id}) {
             <div className='relatedProductsDiv'>
                 {
                     items
-                        .filter((item) => item.subCategory === parameter )
+                        .filter((item) => item.Category === parameter )
                         .map (product => {
                             return (
                                 <div key={product.id}>
