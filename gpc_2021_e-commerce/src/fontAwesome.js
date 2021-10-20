@@ -19,7 +19,8 @@ import {
     faBell as faBellRegular,
     faBuilding as faBuildingRegular,
     faCreditCard as faCreditCardRegular,
-    faQuestionCircle as faQuestionCircleRegular
+    faQuestionCircle as faQuestionCircleRegular,
+    faStar as faStarRegular
 } from '@fortawesome/free-regular-svg-icons';
 
 library.add(
@@ -39,5 +40,6 @@ library.add(
     faBuildingRegular,
     faCreditCardRegular,
     faLock,
-    faQuestionCircleRegular
-    );
+    faQuestionCircleRegular,
+    faStarRegular
+);

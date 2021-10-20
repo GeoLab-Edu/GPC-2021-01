@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
 
-export default function() {
+export default function ProductionNav() {
     const [productData, setProductData] = useState([]);
     const [filteredSubcategory, setFilteredSubCategory] = useState(productData);
 

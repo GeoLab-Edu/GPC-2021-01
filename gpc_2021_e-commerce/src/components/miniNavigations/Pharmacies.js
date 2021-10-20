@@ -23,7 +23,7 @@ export default function Pharmacies() {
                     <li>ავლაბარი-ვარკეთილი</li>
                     <li>ავლაბარი-ვარკეთილი</li>
                 </ul>
-                <iframe className='Map'>
+                <iframe className='Map' title='PharmaciesMap'>
 
                 </iframe>
             </div>

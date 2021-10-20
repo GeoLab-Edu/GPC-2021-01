@@ -1,11 +1,10 @@
-import { Route } from "react-router";
 import { useState, useEffect } from "react/cjs/react.development";
 import Products from "./Products";
 import PricingSlider from '../littleComponents/PricingSlider';
 
 export default function Production() {
 
-    const[error, setError]=useState();
+    const[error, setError]=useState(); //* False არ უნდა მგონი *//
     const [isLoaded, setIsLoaded] = useState(false);
     const[prodData, setProdData]=useState([]);
 
@@ -24,7 +23,7 @@ export default function Production() {
                     setError(error);
                 }
             )
-    }, []);
+    });
     const uniqueBrands = [...new Set(prodData.map(item => item.manufacturer))]
 
     useEffect(() => {
@@ -47,61 +46,59 @@ export default function Production() {
     } else {
         return (
             <div className='Production'>
-                <Route path='/Production' exact>
-                    <form className='FilterForm'>
-                        <fieldset>
-                            <h3>ფილტრი:</h3>
-                            <label>
-                                <input type='checkbox' />
-                                პოპულარული
-                            </label>
-                            <label>
-                                <input type='checkbox' />
-                                ახალი
-                            </label>
-                            <label>
-                                <input type='checkbox' />
-                                ტოპ შეფასება
-                            </label>
-                        </fieldset>
-                        <fieldset>
-                            <h3 className='testTitle'>ბრენდი:</h3>
-                            {
-                                uniqueBrands.map(brand => {
-                                    return (
-                                        
-                                        <label key={brand}  >
-                                            <input 
-                                                type='checkbox' 
-                                                id={brand} 
-                                                onChange={checked}
-                                            />
-                                            {brand}
-                                        </label>
-                                    )
-                                })
-                            }
-                        </fieldset>
-                        <fieldset className='formLastField'>
-                            <h3>ფასი</h3>
-                            <PricingSlider />
-                            <h3 className='testTitle'>პროდუქტის სახე</h3>
-                            <label >
-                                <input type='checkbox'
-                                />
-                                პლასტიკის ბოთლი
-                            </label>
-                            <label >
-                                <input type='checkbox'
-                                />
-                                შუშის ბოთლი
-                            </label>
-                        </fieldset>
-                        <button className='resetBtn' type='reset'>ფილტრის განახლება</button>
-                    </form>
+                <form className='FilterForm'>
+                    <fieldset>
+                        <h3>ფილტრი:</h3>
+                        <label>
+                            <input type='checkbox' />
+                            პოპულარული
+                        </label>
+                        <label>
+                            <input type='checkbox' />
+                            ახალი
+                        </label>
+                        <label>
+                            <input type='checkbox' />
+                            ტოპ შეფასება
+                        </label>
+                    </fieldset>
+                    <fieldset>
+                        <h3 className='testTitle'>ბრენდი:</h3>
+                        {
+                            uniqueBrands.map(brand => {
+                                return (
+                                    
+                                    <label key={brand}  >
+                                        <input 
+                                            type='checkbox' 
+                                            id={brand} 
+                                            onChange={checked}
+                                        />
+                                        {brand}
+                                    </label>
+                                )
+                            })
+                        }
+                    </fieldset>
+                    <fieldset className='formLastField'>
+                        <h3>ფასი</h3>
+                        <PricingSlider />
+                        <h3 className='testTitle'>პროდუქტის სახე</h3>
+                        <label >
+                            <input type='checkbox'
+                            />
+                            პლასტიკის ბოთლი
+                        </label>
+                        <label >
+                            <input type='checkbox'
+                            />
+                            შუშის ბოთლი
+                        </label>
+                    </fieldset>
+                    <button className='resetBtn' type='reset'>ფილტრის განახლება</button>
+                </form>
 
-                    <Products filtersValue={filterValue}/>
-                </Route>
+                <Products filtersValue={filterValue}/>
             </div>
         )
     }
