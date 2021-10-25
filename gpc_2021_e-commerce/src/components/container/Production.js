@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react/cjs/react.development";
 import Products from "./Products";
 import PricingSlider from '../littleComponents/PricingSlider';
+import GlobalURL from './../../GlobalURL';
 
 export default function Production() {
 
-    const[error, setError]=useState(); //* False არ უნდა მგონი *//
+    const[error, setError]=useState();
     const [isLoaded, setIsLoaded] = useState(false);
     const[prodData, setProdData]=useState([]);
 
     const [filterValue, setFilterValue] = useState();
     
     useEffect (() => {
-        fetch('https://lindagiorgadze.github.io/FakeServer/products.json')
+        fetch(GlobalURL)
             .then(response => response.json())
             .then(
                 (result) => {

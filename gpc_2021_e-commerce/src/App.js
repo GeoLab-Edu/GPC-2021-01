@@ -15,21 +15,32 @@ import './App.css';
 import Container from './components/Container';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import { useState } from 'react/cjs/react.development';
+import CartContext from './CartContext';
 
 
 
 
 
 function App() {
+
+  const [cartProducts, setCartProducts] = useState({});
+
   return (
     <Router>
       <div className="App">
-        <Header/>
-        <Switch>
-          <Container/>
-        </Switch>
+        <CartContext.Provider value={{
+          cartProducts,
+          setCartProducts
+        }}
+        >
+          <Header/>
+          <Switch>
+            <Container/>
+          </Switch>
 
-        <Footer/>
+          <Footer/>
+        </CartContext.Provider>
       </div>
     </Router>
   );

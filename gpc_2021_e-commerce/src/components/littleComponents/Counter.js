@@ -1,6 +1,7 @@
 import { useReducer } from "react";
 
-export default function Counter() {
+export default function Counter({quantity}) {
+
     function reducer(state, action) {
         switch (action.type) {
             case 'increment':
@@ -32,7 +33,7 @@ export default function Counter() {
         className='counter'
     >
         <button onClick= {decrement}>-</button>
-        <span>{state.count}</span>
+        <span ref={quantity} >{state.count}</span>
         <button onClick={increment}>+</button>
     </form>
     )

@@ -1,14 +1,38 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from "./littleComponents/Button";
 import { Link } from 'react-router-dom';
+import CartContext from '../CartContext';
+import GlobalURL from '../GlobalURL';
+import '../styles/header.css';
 
 export default function UserDiv() {
 
     const [visible, setVisible] = useState(true);
     const [showProfile, setShowProfile] = useState(false);
 
+    const {cartProducts, setCartProducts} = useContext(CartContext);
+
+    const[error, setError]=useState();
+    const [isLoaded, setIsLoaded] = useState(false);
+    const[prodData, setProdData]=useState([]);
+    useEffect(() => {
+        fetch(GlobalURL)
+        .then(response => response.json())
+        .then(
+            (result) => {
+                setIsLoaded(true);
+                setProdData(result.Products);
+            },
+            (error) => {
+                setIsLoaded(true);
+                setError(error);
+            }
+        )
+    }, [])
+
+    console.log(error, isLoaded, prodData)
 
     function LogIn(e) {
         e.preventDefault();
@@ -23,7 +47,25 @@ export default function UserDiv() {
 
     return (
         <div className='UserDiv'>
-            <FontAwesomeIcon icon='shopping-bag' className='headerMainIcon' />
+
+                <div className='cartIconWrap'>
+                    <FontAwesomeIcon icon='shopping-bag' className='headerMainIcon' />
+                    <span className='quantityCart'>0</span>
+                    <div className='cartDropDown'>
+                        <div className='cartProducts'>
+                            <h3>{cartProducts.title}</h3>
+                            <img src={cartProducts.img} alt='Product Image' style={{width: 100}}/>
+                            <span>{cartProducts.price}</span>
+                        </div>
+                        <p>
+                            Cart is Empty
+                            {cartProducts.id}
+                        </p>
+                        {/* <button onClick={() => setCartProducts(cartProducts+1)}>Click me</button> */}
+                    </div>                
+                </div>
+            
+
             <FontAwesomeIcon icon={['far','heart']} className='favIcon headerMainIcon' />
             <div className='userRoom'>
                 <FontAwesomeIcon icon={['far','user']} mask='far' className='userIcon headerMainIcon'/>

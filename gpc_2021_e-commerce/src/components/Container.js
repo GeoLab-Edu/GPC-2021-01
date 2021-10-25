@@ -17,7 +17,6 @@ export default function Container() {
         <div className='mainContainer'>
             <Route path='/' exact component={Homepage}/>
             <Route path='/Production' exact component={Production}/>
-            {/* <Production/> */}
             <Route path='/Production/:productId' exact component={ProductInnerPage}/>
             <Route path='/Profile' component={ProfileSection} />
   

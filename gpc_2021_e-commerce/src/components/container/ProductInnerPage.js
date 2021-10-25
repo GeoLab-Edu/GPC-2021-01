@@ -6,8 +6,10 @@ import { Link } from "react-router-dom";
 import BuyButton from "../littleComponents/BuyButton";
 import Counter from "../littleComponents/Counter";
 import RatingStars from "../littleComponents/RatingStars";
-import { useReducer } from "react";
+import { useContext, useReducer } from "react";
 import RelatedProducts from "../littleComponents/RelatedProducts";
+import GlobalURL from './../../GlobalURL';
+import CartContext from "../../CartContext";
 
 
 
@@ -22,7 +24,7 @@ export default function ProductInnerPage() {
     const [items, setItems] = useState([]);
 
     const fetchItems = async () => {
-        const data = await fetch('https://lindagiorgadze.github.io/FakeServer/products.json');
+        const data = await fetch(GlobalURL);
         const itemsData = await data.json();
         console.log(itemsData.Products);
         setItems(itemsData.Products);
@@ -77,6 +79,20 @@ export default function ProductInnerPage() {
 
     const textDescr = state.area;
 
+    //* UseContext to add Products to Cart *//
+    const quantity = useRef();
+    const {cartProducts, setCartProducts}=useContext(CartContext);
+    function addProductToCart() {
+        
+        const orderQuantity = quantity.current.textContent;
+        const uniqueItems = [... items];
+        const productsForCart = uniqueItems.filter((product) => product.id === productID)[0]
+        setCartProducts(
+            productsForCart
+        )
+        console.log(productsForCart, cartProducts)
+    }
+
     return (
         <div className='ProductInnerPage'>
             {
@@ -128,14 +144,16 @@ export default function ProductInnerPage() {
                                     <span className='PreviewPrice'>{product.price} ლარი</span>
                                 }
                                 <p className='AnnotationPreview'>{product.annotation}</p>
-                                <Counter/>
+                                <Counter quantity={quantity}/>
                                 <div className='favourites'>
                                     <FontAwesomeIcon icon={['far','heart']} className='favIcon headerMainIcon' />
                                     <Link to='Favourites'>
                                         ფავორიტები
                                     </Link>
                                 </div>
-                                <BuyButton content='ყიდვა'/>
+                                
+                                <BuyButton content='ყიდვა' onClick={addProductToCart}/>
+                                
                                 <div className='Review'>
                                     <div className='Review-scores'>
                                         <h4>შეფასება</h4>
