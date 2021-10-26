@@ -16,7 +16,7 @@ import Container from './components/Container';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import { useState } from 'react/cjs/react.development';
-import CartContext from './CartContext';
+import CartContext, {ProductQuantity} from './CartContext';
 
 
 
@@ -24,7 +24,8 @@ import CartContext from './CartContext';
 
 function App() {
 
-  const [cartProducts, setCartProducts] = useState({});
+  const [cartProducts, setCartProducts] = useState([]);
+  const [cartProductQuantity, setCartProductQuantity] = useState(1);
 
   return (
     <Router>
@@ -34,12 +35,18 @@ function App() {
           setCartProducts
         }}
         >
-          <Header/>
-          <Switch>
-            <Container/>
-          </Switch>
+          <ProductQuantity.Provider value={{
+            cartProductQuantity,
+            setCartProductQuantity
+          }}
+          >
+            <Header/>
+            <Switch>
+              <Container/>
+            </Switch>
 
-          <Footer/>
+            <Footer/>
+          </ProductQuantity.Provider>
         </CartContext.Provider>
       </div>
     </Router>

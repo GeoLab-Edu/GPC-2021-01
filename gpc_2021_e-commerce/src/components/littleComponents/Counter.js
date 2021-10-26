@@ -1,6 +1,9 @@
-import { useReducer } from "react";
+import { useReducer, useContext} from "react";
+import CartContext from './../../CartContext';
 
-export default function Counter({quantity}) {
+
+
+export default function Counter({productID}) {
 
     function reducer(state, action) {
         switch (action.type) {
@@ -27,13 +30,23 @@ export default function Counter({quantity}) {
 
     const [state, dispatch] = useReducer(reducer, {count: 1});
 
+    const {cartProducts, setCartProducts} = useContext(CartContext);
+
+    const newCartProducts = [...cartProducts];
+    newCartProducts.forEach(product => {
+        if (product.id === productID) {
+            product.quantity = state.count
+        }
+    });
+
+
     return (
         <form
         onSubmit={(e) => e.preventDefault()}
         className='counter'
     >
         <button onClick= {decrement}>-</button>
-        <span ref={quantity} >{state.count}</span>
+        <span >{state.count}</span>
         <button onClick={increment}>+</button>
     </form>
     )

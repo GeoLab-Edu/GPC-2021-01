@@ -9,7 +9,7 @@ import RatingStars from "../littleComponents/RatingStars";
 import { useContext, useReducer } from "react";
 import RelatedProducts from "../littleComponents/RelatedProducts";
 import GlobalURL from './../../GlobalURL';
-import CartContext from "../../CartContext";
+import CartContext, {ProductQuantity} from "../../CartContext";
 
 
 
@@ -80,18 +80,34 @@ export default function ProductInnerPage() {
     const textDescr = state.area;
 
     //* UseContext to add Products to Cart *//
-    const quantity = useRef();
+
     const {cartProducts, setCartProducts}=useContext(CartContext);
+    const uniqueItems = [... items];
+    const newCartProducts = [...cartProducts];
+    newCartProducts.forEach(product => {
+        if (product.id === productID) {
+            product.quantity = 1;
+        }
+    });
+    const productsForCart = uniqueItems.filter((product) => product.id === productID)[0];
+
     function addProductToCart() {
-        
-        const orderQuantity = quantity.current.textContent;
-        const uniqueItems = [... items];
-        const productsForCart = uniqueItems.filter((product) => product.id === productID)[0]
-        setCartProducts(
-            productsForCart
-        )
-        console.log(productsForCart, cartProducts)
-    }
+        if (cartProducts.length > 0) {
+            for (let i = 0; i < cartProducts.length; i++) {
+                const cartProduct = cartProducts[i];
+                if (cartProduct.id !== productID) {
+                    newCartProducts.push(productsForCart);
+                    setCartProducts(newCartProducts);
+                }
+                
+            }          
+        } else {
+            newCartProducts.push(productsForCart);
+            setCartProducts(newCartProducts) 
+        }
+    };
+    console.log(productsForCart, cartProducts)
+    
 
     return (
         <div className='ProductInnerPage'>
@@ -144,7 +160,7 @@ export default function ProductInnerPage() {
                                     <span className='PreviewPrice'>{product.price} ლარი</span>
                                 }
                                 <p className='AnnotationPreview'>{product.annotation}</p>
-                                <Counter quantity={quantity}/>
+                                <Counter productID={productID}/>
                                 <div className='favourites'>
                                     <FontAwesomeIcon icon={['far','heart']} className='favIcon headerMainIcon' />
                                     <Link to='Favourites'>

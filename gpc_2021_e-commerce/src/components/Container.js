@@ -5,6 +5,7 @@ import {
     // Link
   } from "react-router-dom";
 import ProfileSection from "./container/CabinetSection";
+import CartPage from "./container/CartPage";
 import Homepage from "./container/Homepage";
 import ProductInnerPage from "./container/ProductInnerPage";
 import Production from "./container/Production";
@@ -18,6 +19,7 @@ export default function Container() {
             <Route path='/' exact component={Homepage}/>
             <Route path='/Production' exact component={Production}/>
             <Route path='/Production/:productId' exact component={ProductInnerPage}/>
+            <Route path='/Cart' exact component={CartPage}/>
             <Route path='/Profile' component={ProfileSection} />
   
         </div>

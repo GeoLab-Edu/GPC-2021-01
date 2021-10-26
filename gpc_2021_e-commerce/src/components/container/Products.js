@@ -5,7 +5,7 @@ import ReactPaginate from 'react-paginate';
 
 export default function Products({filtersValue}) {
     
-    const[error, setError]=useState();
+    const[error, setError]=useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const[prodData, setProdData]=useState([]);
     

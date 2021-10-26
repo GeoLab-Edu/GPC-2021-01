@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from "./littleComponents/Button";
 import { Link } from 'react-router-dom';
@@ -13,6 +13,33 @@ export default function UserDiv() {
     const [showProfile, setShowProfile] = useState(false);
 
     const {cartProducts, setCartProducts} = useContext(CartContext);
+
+    const quantity = useRef([React.createRef()]);
+    const [quantityNumber, setQuantityNumber] = useState(null);
+
+    const price = useRef([React.createRef()]);
+    const [priceNumber, setPriceNumber] = useState(null);
+
+    useEffect(()=> {
+        setQuantityNumber(quantity.current[0].current);
+        setPriceNumber(price.current[0].current)
+    }, [cartProducts]);
+    var x;
+    var y;
+    if ((quantityNumber !== null) && (priceNumber !== null)) {
+        x = quantityNumber.textContent;
+        y = priceNumber.textContent;
+    } else {
+        x = 1;
+        y = 1;
+    }
+
+    console.log(cartProducts)
+
+    function handleRemoveProduct(e) {
+        const prodID = parseInt(e.target.value);
+        setCartProducts(cartProducts.filter((product) => product.id !== prodID))
+    }
 
     const[error, setError]=useState();
     const [isLoaded, setIsLoaded] = useState(false);
@@ -32,7 +59,7 @@ export default function UserDiv() {
         )
     }, [])
 
-    console.log(error, isLoaded, prodData)
+    // console.log(error, isLoaded, prodData)
 
     function LogIn(e) {
         e.preventDefault();
@@ -40,7 +67,7 @@ export default function UserDiv() {
         setShowProfile(true);
     }
     function Logout() {
-        setVisible(true)
+        setVisible(true);
         setShowProfile(false);
     }
 
@@ -49,18 +76,49 @@ export default function UserDiv() {
         <div className='UserDiv'>
 
                 <div className='cartIconWrap'>
-                    <FontAwesomeIcon icon='shopping-bag' className='headerMainIcon' />
-                    <span className='quantityCart'>0</span>
+                    <Link to='/Cart'>
+                        <FontAwesomeIcon icon='shopping-bag' className='headerMainIcon' />
+                    </Link>
+
+                    <span className='quantityCart'>{cartProducts.length}</span>
                     <div className='cartDropDown'>
-                        <div className='cartProducts'>
-                            <h3>{cartProducts.title}</h3>
-                            <img src={cartProducts.img} alt='Product Image' style={{width: 100}}/>
-                            <span>{cartProducts.price}</span>
-                        </div>
-                        <p>
-                            Cart is Empty
-                            {cartProducts.id}
-                        </p>
+                        {
+                            cartProducts.length !== 0
+                            ?                        
+                            cartProducts.map((product, i) => {
+                                return (
+                                    <div className='cartProducts' key={i}>
+                                        <img src={product.img} alt='Product Image' style={{width: 100, height: 20}}/>
+                                        <div className='cartProdDetails'>
+                                            <h3>{product.title}</h3>
+                                            <span 
+                                                ref={price.current[i]}
+                                            >
+                                                {product.price}
+                                            </span>
+                                            <span
+                                                ref={quantity.current[i]}
+                                            >
+                                                {
+                                                    product.quantity 
+                                                    ?
+                                                    product.quantity
+                                                    :
+                                                    1
+                                                }
+                                            </span>
+                                            <span>........{ x * y } ლარი</span>
+                                        </div>
+                                        <button value={product.id} onClick={handleRemoveProduct}>წაშლა</button>
+                                    </div>
+                                )
+                            })
+                            :
+                            <p>
+                                კალათა ცარიელია
+                            </p>                         
+                        }
+
                         {/* <button onClick={() => setCartProducts(cartProducts+1)}>Click me</button> */}
                     </div>                
                 </div>
