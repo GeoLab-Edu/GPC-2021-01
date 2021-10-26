@@ -24,7 +24,7 @@ export default function Production() {
                     setError(error);
                 }
             )
-    });
+    }, []);
     const uniqueBrands = [...new Set(prodData.map(item => item.manufacturer))]
 
     useEffect(() => {
