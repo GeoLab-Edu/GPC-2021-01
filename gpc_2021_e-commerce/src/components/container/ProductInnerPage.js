@@ -84,29 +84,33 @@ export default function ProductInnerPage() {
     const {cartProducts, setCartProducts}=useContext(CartContext);
     const uniqueItems = [... items];
     const newCartProducts = [...cartProducts];
-    newCartProducts.forEach(product => {
-        if (product.id === productID) {
-            product.quantity = 1;
-        }
-    });
-    const productsForCart = uniqueItems.filter((product) => product.id === productID)[0];
+    console.log(newCartProducts);
+
+    const currentProduct = uniqueItems.filter((product) => product.id === productID)[0];
 
     function addProductToCart() {
-        if (cartProducts.length > 0) {
-            for (let i = 0; i < cartProducts.length; i++) {
-                const cartProduct = cartProducts[i];
-                if (cartProduct.id !== productID) {
-                    newCartProducts.push(productsForCart);
-                    setCartProducts(newCartProducts);
-                }
-                
-            }          
-        } else {
-            newCartProducts.push(productsForCart);
-            setCartProducts(newCartProducts) 
-        }
+            let productAlreadyAdded;
+            if (cartProducts.find(item => item.id === productID) !== undefined) {
+                productAlreadyAdded = cartProducts.find(item => item.id === productID);
+            } else {
+                productAlreadyAdded = false;
+            }
+            if (productAlreadyAdded !== false) {
+                const updatedProducts = cartProducts.map(item => {
+                    // if (item.id == productID) {
+                    //     item.quantity +=1;
+                    // }
+                    return item;
+                })
+                console.log(updatedProducts)
+                setCartProducts(updatedProducts);
+            } else {
+                // setCartProducts(newCartProducts);
+                setCartProducts([...cartProducts, currentProduct]);
+
+            }         
     };
-    console.log(productsForCart, cartProducts)
+    console.log(currentProduct, cartProducts)
     
 
     return (

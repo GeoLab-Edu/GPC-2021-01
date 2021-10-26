@@ -29,9 +29,9 @@ export default function UserDiv() {
     if ((quantityNumber !== null) && (priceNumber !== null)) {
         x = quantityNumber.textContent;
         y = priceNumber.textContent;
-    } else {
-        x = 1;
-        y = 1;
+    // } else {
+    //     x = 1;
+    //     y = 1;
     }
 
     console.log(cartProducts)
@@ -107,7 +107,7 @@ export default function UserDiv() {
                                                     1
                                                 }
                                             </span>
-                                            <span>........{ x * y } ლარი</span>
+                                            <span >........{ x * y } ლარი</span>
                                         </div>
                                         <button value={product.id} onClick={handleRemoveProduct}>წაშლა</button>
                                     </div>

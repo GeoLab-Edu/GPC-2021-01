@@ -47,7 +47,7 @@ export default function CartPage() {
                 }
 
             </section>
-            <RelatedProducts id={cartProducts.id} />
+            <RelatedProducts id={cartProducts.id?cartProducts.id:null} />
         </section>
     )
 }
