@@ -80,7 +80,7 @@
 .Manufacturer span:last-child {
     color: var(--fontLightBlue);
 }
-.PricingWrap {
+.ProductInnerPage .PricingWrap {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
