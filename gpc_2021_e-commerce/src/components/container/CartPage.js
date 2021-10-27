@@ -18,7 +18,7 @@ export default function CartPage() {
 
     const sumProductArray = cartProducts.map((item) => {
         let multiplication;
-        if (item.discountedPrice == null ) {
+        if (!item.discountedPrice ) {
             multiplication = (item.quantity * item.price);
             
         } else {
