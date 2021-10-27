@@ -1,5 +1,6 @@
 import { useReducer, useContext, useEffect} from "react";
 import CartContext from '../../CartContext';
+import './../../styles/Counter.css';
 
 
 
@@ -20,7 +21,7 @@ export default function Counter({productID}) {
                     count: state.count + 1
                 }
             case 'decrement':
-                if (state.count < 1) {
+                if (state.count < 2) {
                     return state
                 } else {
                     return {count: state.count - 1}  

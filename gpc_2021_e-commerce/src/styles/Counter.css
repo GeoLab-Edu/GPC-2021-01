@@ -1,0 +1,21 @@
+.counter {
+    color: var(--fontLightBlue);
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+}
+.counter button, .counter span {
+    color: var(--fontLightBlue);
+    background-color: transparent;
+    border-radius: 10px;
+    border: 0.2px solid var(--fontLightBlue);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.counter button {
+    cursor: pointer;
+}
