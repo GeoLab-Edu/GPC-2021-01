@@ -1,0 +1,58 @@
+.cartIconWrap:hover .cartDropDown {
+    display: block;
+}
+.cartDropDown {
+    padding: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 30vw;
+    display: none;
+}
+.cartProducts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2% 0;
+}
+.cartProducts img {
+    width: 8vw;
+    height: 10vh;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.cartProdDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 70%;
+    padding: 1% 0;
+}
+.cartProdTitle {
+    font-family: var(--BPG);
+    width: 90%;
+}
+.PricingWrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+.PricingWrap span {
+    padding: 2%;
+    font-family: var(--roboto);
+    font-size: 0.8rem;
+}
+.DeleteProdBtn {
+    height: fit-content;
+    padding: 2%;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    color: var(--fontWhite);
+    background-color: var(--secondaryColor);
+}
+.VisitCartBtn {
+    width: 100%;
+}

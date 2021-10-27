@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import CartContext from '../CartContext';
 import GlobalURL from '../GlobalURL';
 import '../styles/header.css';
+import './../styles/MiniCart.css';
 
 export default function UserDiv() {
 
@@ -79,43 +80,46 @@ export default function UserDiv() {
                             cartProducts.map((product, i) => {
                                 return (
                                     <div className='cartProducts' key={i}>
-                                        <img src={product.img} alt='Product Image' style={{width: 100, height: 20}}/>
+                                        <img src={product.img} alt='Product Image'/>
                                         <div className='cartProdDetails'>
-                                            <h3>{product.title}</h3>
-                                            <span>
-                                                {product.price} ლარი
-                                            </span>
-                                            <span>
-                                                {
-                                                    product.quantity 
-                                                    ?
-                                                    product.quantity
-                                                    :
-                                                    1
-                                                }
-                                            </span>
-                                            <span className='sumPrice'>
-                                                {
-                                                    product.discountedPrice
-                                                    ?
-                                                    product.discountedPrice * product.quantity
-                                                    :
-                                                    product.price * product.quantity
-                                                }
-                                                ლარი
-                                            </span>
+                                            <h3 className='cartProdTitle'>{product.title}</h3>
+                                            <div className='PricingWrap'>
+                                                <span>
+                                                    {product.price} ლარი
+                                                </span>
+                                                <span>
+                                                    {
+                                                        product.quantity 
+                                                        ?
+                                                        product.quantity
+                                                        :
+                                                        1
+                                                    }
+                                                </span>
+                                                <span className='sumPrice'>
+                                                    {
+                                                        product.discountedPrice
+                                                        ?
+                                                        product.discountedPrice * product.quantity
+                                                        :
+                                                        product.price * product.quantity
+                                                    }
+                                                    ლარი
+                                                </span>
+                                            </div>
+
                                         </div>
-                                        <button value={product.id} onClick={handleRemoveProduct}>წაშლა</button>
+                                        <button className='DeleteProdBtn' value={product.id} onClick={handleRemoveProduct}>წაშლა</button>
                                     </div>
                                 )
                             })
                             :
-                            <p>
+                            <p className='EmptyCart'>
                                 კალათა ცარიელია
                             </p>                         
                         }
                         <Link to='/Cart'>
-                            <Button type='button' content='კალათის ნახვა'/>
+                            <Button customClass='VisitCartBtn' type='button' content='კალათის ნახვა'/>
                         </Link>
                     </div>                
                 </div>
