@@ -1,3 +1,161 @@
+.CartPage {
+    width: 100%;
+}
+.CartFavTitle {
+    font-size: 1.5rem;
+    font-family: var(--BPGcaps);
+    font-weight: normal;
+    color: var(--fontBlack);
+    width: 100%;
+    border-bottom: 1px solid var(--fontDarkGrey);
+    padding: 1% 0 2.5% 0;
+}
 .OrderWrap {
+    width: 100%;
+    padding: 1.5% 0;
     display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.ProductWrap {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+}
+.productBox {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-bottom: 3.5%;
+    position: relative;
+}
+.productBox img {
+    width: 20vw;
+    max-width: 220px;
+    height: 40vh;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 2%;
+}
+.productDetails {
+    width: 100%;
+    display: flex;
+    justify-content: stretch;
+    flex-direction: column;
+}
+.ProductTitle {
+    font-size: 1.5rem;
+    font-family: var(--BPGcaps);
+    color: var(--fontBlack);
+    padding-bottom: 1%;
+}
+.productDetails span {
+    font-size: 0.8rem;
+    font-family: var(--roboto);
+    padding: 0.5% 0;
+}
+.productDetails::after {
+    content: '';
+    width: 100%;
+    height: 0.35em;
+    background-color: var(--backgroundColorGrey);
+    border-radius: 10px;
+}
+.OrderDetails {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100%;
+}
+.ProductPrice {
+    min-width: 35%;
+    display: flex;
+    justify-content: space-between;
+
+}
+.ProductPrice span {
+    font-size: 0.7rem;
+    color: var(--fontDarkGrey);
+    text-decoration: line-through;
+}
+.ProductPrice span:first-child {
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+.DeleteBtn {
+    width: 3%;
+    height: 12%;
+    position: absolute;
+    right: 0;
+    background-color: transparent;
+}
+.DeleteBtn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: transparent;
+    border-radius: 4px;
+    padding: 8% 1%;
+    box-shadow: 0px 3px 6px var(--fontDarkGrey);
+}
+.DeleteBtn button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    cursor: pointer;
+}
+.EmptyCart {
+    font-size: 1.5rem;
+    font-family: var(--BPGcaps);
+}
+.OrderSum {
+    padding: 2%;
+    width: 30%;
+    background-color: var(--backgroundColorGrey);
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    height: max-content;
+}
+.OrderTitle {
+    font-size: 1.5rem;
+    font-family: var(--BPGcaps);
+    font-weight: normal;
+    color: var(--fontBlack);
+}
+.OrderTable {
+    margin-top: 5%;
+    text-align: left;
+    font-family: var(--BPGcaps);
+    font-weight: normal;
+    color: var(--fontBlack);
+    width: 100%;
+}
+tr {
+    border: 1em solid transparent;
+    border-left: none;
+}
+th, td {
+    border: 1em solid transparent;
+    border-left: none;
+    font-size: 1rem;
+}
+tr:last-child th, tr:last-child td {
+    font-size: 0.8rem;
+}
+td {
+    text-align: end;
+}
+.OrderBuyBtn {
+    text-align: center;
+}
+.OrderSum .globalBtn {
+    text-align: center;
 }

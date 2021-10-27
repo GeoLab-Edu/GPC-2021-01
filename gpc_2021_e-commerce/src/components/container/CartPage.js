@@ -4,6 +4,7 @@ import CartContext from "../../CartContext";
 import BuyButton from "../littleComponents/BuyButton";
 import CounterwithValue from "../littleComponents/CounterwithValue";
 import RelatedProducts from "../littleComponents/RelatedProducts";
+import trash from './../../images/trash-alt-regular.svg';
 import './../../styles/Cart.css';
 
 export default function CartPage() {
@@ -41,61 +42,64 @@ export default function CartPage() {
 
     return (
         <section className='CartPage'>
-            <h4>ფავორიტები</h4>
+            <h4 className='CartFavTitle'>ფავორიტები</h4>
             <section className='OrderWrap'>
+                <div className='ProductWrap'>
                 {
                     cartProducts.length > 0 
                     ?
                     cartProducts.map((product, i) => {
                         return (
                             <div className='productBox' key={i}>
-                                <img src={product.img} alt={product.title} style={{width: 300, height: 200}}/>
+                                <img src={product.img} alt={product.title}/>
                                 <div className='productDetails'>
                                     <Link to={`/Production/${product.id}`}>
-                                        <h3>{product.title}</h3>
+                                        <h3 className='ProductTitle'>{product.title}</h3>
                                     </Link>
                                     <span>{product.manufacturer}</span>
                                     <span>{product.amount}</span>
+                                    <div className='OrderDetails'>
+                                        {product.discountedPrice 
+                                        ? 
+                                        <div className='ProductPrice'>
+                                        <span> {product.discountedPrice} ლარი</span>
+                                        <span>{product.price} ლარი</span>
+                                        </div> 
+                                        :
+                                        <>
+                                        <span>{product.price} ლარი</span>
+                                        </>
+                                        }
+                                        <CounterwithValue productID={product.id}/>
+                                    </div>
                                 </div>
-                                <div className='OrderDetails'>
-                                    
-                                    {product.discountedPrice 
-                                    ? 
-                                    <>
-                                    <span> {product.discountedPrice} </span>
-                                    <span>ლარი</span>
-                                    <span style={{textDecoration:'line-through'}}>{product.price}</span>
-                                    <span style={{textDecoration:'line-through'}}>ლარი</span>
-                                    </> 
-                                    :
-                                    <>
-                                    <span>{product.price}</span>
-                                    <span>ლარი</span>
-                                    </>
-                                    }
-                                    <span>...{product.quantity}</span>
-                                    <CounterwithValue productID={product.id}/>
+                                <div className='DeleteBtn'>
+                                    <button value={product.id} onClick={handleRemoveProduct}>
+                                        {/* წაშლა */}
+                                    </button>
+                                    <img src={trash}/>
                                 </div>
-                                <button value={product.id} onClick={handleRemoveProduct}>წაშლა</button>
+                                
                             </div>
                             
                         )
                     })
                     :
-                    <p>კალათა ცარიელია</p>
+                    <p className='EmptyCart'>კალათა ცარიელია</p>
                 }
+                </div>
                 {
                     cartProducts 
                     ?
                     <div className='OrderSum'>
-                        <h4>თქვენი შეკვეთა</h4>
-                        <table>
+                        <h4 className='OrderTitle'>თქვენი შეკვეთა</h4>
+                        <table className='OrderTable'>
                             <tr>
                                 <th>
                                     სულ თანხა
                                 </th>
                                     <td>
-                                        {sumProductResult}
+                                        {sumProductResult} ლარი
                                     </td>
                             </tr>
                             <tr>
@@ -103,7 +107,7 @@ export default function CartPage() {
                                     თქვენ დაზოგეთ
                                 </th>
                                 <td>
-                                    {savedMoneyResult}
+                                    {savedMoneyResult} ლარი
                                 </td>
                             </tr>
                         </table>
