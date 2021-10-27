@@ -8,6 +8,7 @@
     align-items: stretch;
     width: 30vw;
     display: none;
+    z-index: 99;
 }
 .cartProducts {
     display: flex;
