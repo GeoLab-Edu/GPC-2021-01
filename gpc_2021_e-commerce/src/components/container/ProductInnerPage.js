@@ -58,10 +58,11 @@ export default function ProductInnerPage() {
         {id: 'pharmacies', title:'სად შევიძინო'}
     ]
 
-    const [active, setActive] = useState('Annotation');
+    const [active, setActive] = useState('annotation');
 
     function handleClick(e) {
-        setActive(e.target.id)
+        setActive(e.target.id);
+        console.log(e.target.id)
     }
 
     //* Description Section */
@@ -148,35 +149,47 @@ export default function ProductInnerPage() {
                                 </div>
                             </section>
                             <section className='Details'>
-                                <h2 className='DetailsTitle'>{product.title}</h2>
-                                <div>
-                                    <span>{product.manufacturer}</span>
-                                    <span>{product.amount}</span>                                    
+                                <div className='DetailsHeading'>
+                                    <h2 className='DetailsTitle'>{product.title}</h2>
+                                    <div className='ManufacturerPricingWrap'>
+                                        <div className='Manufacturer'>
+                                            <span>{product.manufacturer}</span>
+                                            <span>{product.amount}</span>                                    
+                                        </div>
+                                        {
+                                            product.discountedPrice
+                                            ?
+                                            <div className='PricingWrap'>
+                                                <span className='PreviewPrice'>{product.discountedPrice} ლარი</span>
+                                                <span className='PreviewOldPrice'>{product.price} ლარი</span>
+                                            </div>
+                                            :
+                                            <div className='PricingWrap'>
+                                                <span className='PreviewPrice'>{product.price} ლარი</span>
+                                            </div>
+                                        }                                        
+                                    </div>
+
+
+                                    <p className='AnnotationPreview'>{product.annotation}</p>
+                                    <div className='PurchaseDetailsWrap'>
+                                        <Counter productID={productID}/>
+                                        <div className='favourites'>
+                                            <FontAwesomeIcon icon={['far','heart']} className='favIcon headerMainIcon' />
+                                            <Link to='Favourites'>
+                                                ფავორიტები
+                                            </Link>
+                                        </div>
+                                        
+                                        <BuyButton content='ყიდვა' onClick={addProductToCart}/>
+                                    </div>
+
                                 </div>
-                                {
-                                    product.discountedPrice
-                                    ?
-                                    <>
-                                        <span className='PreviewPrice'>{product.discountedPrice} ლარი</span>
-                                        <span className='PreviewOldPrice'>{product.price} ლარი</span>
-                                    </>
-                                    :
-                                    <span className='PreviewPrice'>{product.price} ლარი</span>
-                                }
-                                <p className='AnnotationPreview'>{product.annotation}</p>
-                                <Counter productID={productID}/>
-                                <div className='favourites'>
-                                    <FontAwesomeIcon icon={['far','heart']} className='favIcon headerMainIcon' />
-                                    <Link to='Favourites'>
-                                        ფავორიტები
-                                    </Link>
-                                </div>
-                                
-                                <BuyButton content='ყიდვა' onClick={addProductToCart}/>
+
                                 
                                 <div className='Review'>
                                     <div className='Review-scores'>
-                                        <h4>შეფასება</h4>
+                                        <h4 className='Review-Scores-Title'>შეფასება</h4>
                                         <label>
                                             ჯამური ქულა
                                             <RatingStars ratingvalue={product.review} id={productID}/>
@@ -195,7 +208,7 @@ export default function ProductInnerPage() {
                                         </label>
                                     </div>
                                     <div className='Review-Comments'>
-                                        <h4>კომენტარები</h4>
+                                        <h4 className='Review-Comments-Title'>კომენტარები</h4>
                                         <div className='comments ' ref={comments}>
                                             <p>პროდუქტი შეიცავს ბუნებრივ შემადგენლებს და არის მისაღები ფასის.</p>
                                             <p>რეკომენდირებულია ფასიდან და ხარისხიდან გამომდინარე.</p>
@@ -203,24 +216,27 @@ export default function ProductInnerPage() {
                                             <p>პროდუქტი შეიცავს ბუნებრივ შემადგენლებს და არის მისაღები ფასის.</p>
                                             <p>ისე, ძალიან კაი ფასისაა.</p>                                            
                                         </div>
-                                        <button onClick={showMore}>მეტი</button>
+                                        <button className='ShowMoreBtn' onClick={showMore}>მეტი</button>
                                         <form className='customComment' onSubmit={(e)=> e.preventDefault()}>
-                                            <button type='button' onClick={handleComment}>დატოვე კომენტარი</button>
-                                            <input type='text' className='commentArea' ref={commentInput}/>
+                                            <button className='customCommentBtn' type='button' onClick={handleComment}>დატოვე კომენტარი</button>
+                                            <input type='text' className='commentArea' ref={commentInput} placeholder='დატოვე კომენტარი'/>
                                         </form>
                                     </div>
                                 </div>
                             </section>
                             <section className='TextDescription'>
-                                <ul>
+                                <ul className='TextDescriptionUl' >
                                     {
                                         textDescriptionLi.map((item) => {
                                             return (
                                                 <li 
                                                     id={item.id} 
                                                     key={item.id} 
-                                                    className={'NewProductsDiv ' + active} 
-                                                    onClick={handleClick, (e) => dispatch({type: e.target.id})}
+                                                    className={'NewProductsDiv ' + active}
+                                                    onClick={(e)=> {
+                                                        handleClick(e);
+                                                        dispatch({type: e.target.id})
+                                                    }}
                                                 >
                                                     {item.title}
                                                 </li>
