@@ -24,15 +24,6 @@ export default function UserDiv() {
         setQuantityNumber(quantity.current[0].current);
         setPriceNumber(price.current[0].current)
     }, [cartProducts]);
-    var x;
-    var y;
-    if ((quantityNumber !== null) && (priceNumber !== null)) {
-        x = quantityNumber.textContent;
-        y = priceNumber.textContent;
-    // } else {
-    //     x = 1;
-    //     y = 1;
-    }
 
     console.log(cartProducts)
 
@@ -91,14 +82,10 @@ export default function UserDiv() {
                                         <img src={product.img} alt='Product Image' style={{width: 100, height: 20}}/>
                                         <div className='cartProdDetails'>
                                             <h3>{product.title}</h3>
-                                            <span 
-                                                ref={price.current[i]}
-                                            >
-                                                {product.price}
+                                            <span>
+                                                {product.price} ლარი
                                             </span>
-                                            <span
-                                                ref={quantity.current[i]}
-                                            >
+                                            <span>
                                                 {
                                                     product.quantity 
                                                     ?
@@ -107,7 +94,16 @@ export default function UserDiv() {
                                                     1
                                                 }
                                             </span>
-                                            <span >........{ x * y } ლარი</span>
+                                            <span className='sumPrice'>
+                                                {
+                                                    product.discountedPrice
+                                                    ?
+                                                    product.discountedPrice * product.quantity
+                                                    :
+                                                    product.price * product.quantity
+                                                }
+                                                ლარი
+                                            </span>
                                         </div>
                                         <button value={product.id} onClick={handleRemoveProduct}>წაშლა</button>
                                     </div>
@@ -118,8 +114,8 @@ export default function UserDiv() {
                                 კალათა ცარიელია
                             </p>                         
                         }
-                        <Link to='/Cart'> 
-                        <button type='button'>კალათის ნახვა</button>
+                        <Link to='/Cart'>
+                            <Button type='button' content='კალათის ნახვა'/>
                         </Link>
                     </div>                
                 </div>
