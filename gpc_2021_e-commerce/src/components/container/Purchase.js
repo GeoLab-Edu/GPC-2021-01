@@ -1,20 +1,18 @@
-import { Link, Route } from "react-router-dom";
-import { useContext } from "react/cjs/react.development";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import CartContext from "../../CartContext";
 import BuyButton from "../littleComponents/BuyButton";
-import CounterwithValue from "../littleComponents/CounterwithValue";
 import RelatedProducts from "../littleComponents/RelatedProducts";
-import './../../styles/Cart.css';
+import CounterwithValue from './../littleComponents/CounterwithValue';
 
-export default function CartPage() {
 
+export default function Purchase() {
     const {cartProducts, setCartProducts} = useContext(CartContext);
 
     function handleRemoveProduct(e) {
         const prodID = parseInt(e.target.value);
         setCartProducts(cartProducts.filter((product) => product.id !== prodID))
     }
-
     const sumProductArray = cartProducts.map((item) => {
         let multiplication;
         if (item.discountedPrice == null ) {
@@ -26,23 +24,18 @@ export default function CartPage() {
         return multiplication
     })
     const sumProductResult = sumProductArray.reduce((a, b) => a+b,0);
+    
+    if (cartProducts) {
+        return (
+            <section className='PurchasePage'>
+                <section className='Delivery'>
+                    <form>
+                        
+                    </form>
+                </section>
+                <section className='OrderPreview'>
+                <h3>თქვენი შეკვეთა</h3>
 
-    const savedMoneyArray = cartProducts.map((item) => {
-        let savedMoney;
-        if (item.discountedPrice > 0) {
-            savedMoney = (item.quantity * item.price)-(item.quantity * item.discountedPrice);
-            
-        } else {
-            savedMoney = 0
-        }
-        return savedMoney
-    });
-    const savedMoneyResult = savedMoneyArray.reduce((a,b)=> a+b,0)
-
-    return (
-        <section className='CartPage'>
-            <h4>ფავორიტები</h4>
-            <section className='OrderWrap'>
                 {
                     cartProducts.length > 0 
                     ?
@@ -55,7 +48,7 @@ export default function CartPage() {
                                         <h3>{product.title}</h3>
                                     </Link>
                                     <span>{product.manufacturer}</span>
-                                    <span>{product.amount}</span>
+                                    {/* <span>{product.amount}</span> */}
                                 </div>
                                 <div className='OrderDetails'>
                                     
@@ -84,39 +77,16 @@ export default function CartPage() {
                     :
                     <p>კალათა ცარიელია</p>
                 }
-                {
-                    cartProducts 
-                    ?
-                    <div className='OrderSum'>
-                        <h4>თქვენი შეკვეთა</h4>
-                        <table>
-                            <tr>
-                                <th>
-                                    სულ თანხა
-                                </th>
-                                    <td>
-                                        {sumProductResult}
-                                    </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    თქვენ დაზოგეთ
-                                </th>
-                                <td>
-                                    {savedMoneyResult}
-                                </td>
-                            </tr>
-                        </table>
-                        <Link to='Purchase'>
-                            <BuyButton content='ყიდვა'/>
-                        </Link>
-                    </div>
-                    :
-                    null
-                }
-
+                <div className='sumMoney'>
+                    <span>სულ თანხა</span>
+                    <span>{sumProductResult} ლარი</span>
+                </div>
+                <BuyButton content='ყიდვა'/>
+                </section>
+                <RelatedProducts id={cartProducts.id?cartProducts.id:null}/>
+                Purchase Page
             </section>
-            <RelatedProducts id={cartProducts.id?cartProducts.id:null} />
-        </section>
-    )
+        )        
+    }
+
 }

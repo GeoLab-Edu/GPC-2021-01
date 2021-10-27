@@ -118,8 +118,9 @@ export default function UserDiv() {
                                 კალათა ცარიელია
                             </p>                         
                         }
-
-                        {/* <button onClick={() => setCartProducts(cartProducts+1)}>Click me</button> */}
+                        <Link to='/Cart'> 
+                        <button type='button'>კალათის ნახვა</button>
+                        </Link>
                     </div>                
                 </div>
             
