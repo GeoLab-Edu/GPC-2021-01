@@ -1,6 +1,6 @@
 
 import { useState, useRef, useEffect } from "react/cjs/react.development";
-import image from "/Users/linda/Desktop/GPC-2021-01/gpc_2021_e-commerce/src/images/sliderImage1.png";
+import image from "./../../images/sliderImage1.png";
 
 const images = [
     image,
