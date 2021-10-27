@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react/cjs/react.development';
 import GlobalURL from '../../GlobalURL';
 import './../../styles/RelatedProducts.css';
@@ -23,7 +24,7 @@ export default function RelatedProducts({id}) {
 
     return (
         <section className='relatedProductsSection'>
-            <h3>შეიძლება დაგაინტერესოთ</h3>
+            <h3 className='RelatedProductsTitle' >შეიძლება დაგაინტერესოთ</h3>
             <div className='relatedProductsDiv'>
                 {
                     parameter === undefined
@@ -31,10 +32,14 @@ export default function RelatedProducts({id}) {
                     items
                         .map (product => {
                             return (
-                                <div key={product.id}>
-                                    <img className='relatedImage' src={product.img} />
-                                    <h2>{product.title}</h2>
-                                    <span>{product.price}</span>
+                                <div className='RelatedProductsBox' key={product.id}>
+                                    <Link to={`/Production/${product.id}`}>
+                                        <img className='relatedImage' src={product.img} />
+                                        <div className='RelatedProductDetails'>
+                                            <h2>{product.title}</h2>
+                                            <span>{product.price} ლარი</span>
+                                        </div>
+                                    </Link>
                                 </div>                                
                             )
 
@@ -44,10 +49,14 @@ export default function RelatedProducts({id}) {
                         .filter((item) => item.Category === parameter )
                         .map (product => {
                             return (
-                                <div key={product.id}>
-                                    <img className='relatedImage' src={product.img} />
-                                    <h2>{product.title}</h2>
-                                    <span>{product.price}</span>
+                                <div className='RelatedProductsBox' key={product.id}>
+                                    <Link to={`/Production/${product.id}`}>
+                                        <img className='relatedImage' src={product.img} />
+                                        <div className='RelatedProductDetails'>
+                                            <h2>{product.title}</h2>
+                                            <span>{product.price} ლარი</span>
+                                        </div>
+                                    </Link>
                                 </div>                                
                             )
 
