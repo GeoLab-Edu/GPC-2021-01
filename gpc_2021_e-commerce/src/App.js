@@ -15,7 +15,7 @@ import './App.css';
 import Container from './components/Container';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import { useState } from 'react/cjs/react.development';
+import { useState, useMemo } from 'react/cjs/react.development';
 import CartContext, {ProductQuantity} from './CartContext';
 
 
@@ -25,15 +25,21 @@ import CartContext, {ProductQuantity} from './CartContext';
 function App() {
 
   const [cartProducts, setCartProducts] = useState([]);
+  const memorizedValue = useMemo(() => ({
+    cartProducts, setCartProducts
+  }), [cartProducts]);
   const [cartProductQuantity, setCartProductQuantity] = useState(1);
 
   return (
     <Router>
       <div className="App">
-        <CartContext.Provider value={{
-          cartProducts,
-          setCartProducts
-        }}
+        <CartContext.Provider value={
+          // {
+          // cartProducts,
+          // setCartProducts
+          // }
+          memorizedValue
+        }
         >
           <ProductQuantity.Provider value={{
             cartProductQuantity,
