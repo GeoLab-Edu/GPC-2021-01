@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
 import { useEffect, useState, useRef } from "react/cjs/react.development";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './ProductInnerPage.css';
+import './../../styles/ProductInnerPage.css';
 import { Link } from "react-router-dom";
 import BuyButton from "../littleComponents/BuyButton";
 import Counter from "../littleComponents/Counter";

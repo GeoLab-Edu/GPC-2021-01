@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react/cjs/react.development';
 import GlobalURL from '../../GlobalURL';
-import './RelatedProducts.css';
+import './../../styles/RelatedProducts.css';
 
 export default function RelatedProducts({id}) {
     const [items, setItems] = useState([]);
