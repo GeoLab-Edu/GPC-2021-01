@@ -1,0 +1,50 @@
+footer {
+    width: 100%;
+    padding: 2% 5.6%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+}
+.mainFooter {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+.mainFooter section {
+    width: max-content;
+    min-width: 20%;
+
+}
+.SocialIconsWrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 5%;
+}
+.mainFooter h3 {
+    font-family: var(--BPGcaps);
+    font-size: 1.5rem;
+    padding: 5% 0;
+    margin-bottom: 5%;
+    color: var(--mainColor);
+}
+.mainFooter li a {
+    color: var(--mainColor);
+    font-family: var(--BPG);
+    padding: 3%;
+    line-height: 20px;
+}
+.mainFooter li {
+    text-align: left;
+}
+
+address {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: var(--mainColor);
+}
+address a {
+    color: var(--mainColor);
+}
