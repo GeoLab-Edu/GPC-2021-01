@@ -67,9 +67,9 @@
     background-color: hsla(213, 10%, 45%, 0.4);
     width: 100vw;
     height: 100vh;
-    display: flex;
     justify-content: center;
     align-items: center;
+    display: none;
 }
 .PopUpContent {
     background-color: var(--backgroundColor);
