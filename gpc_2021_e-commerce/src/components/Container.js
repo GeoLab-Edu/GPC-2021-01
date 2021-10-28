@@ -1,17 +1,10 @@
-import {
-    // BrowserRouter as Router,
-    // Switch,
-    Route,
-    // Link
-  } from "react-router-dom";
+import {Route} from "react-router-dom";
 import ProfileSection from "./container/CabinetSection";
 import CartPage from "./container/CartPage";
 import Homepage from "./container/Homepage";
 import ProductInnerPage from "./container/ProductInnerPage";
 import Production from "./container/Production";
 import Purchase from "./container/Purchase";
-// import Products from "./container/Products";
-// import ProductionPreview from "./littleComponents/ProductionPreview";
 
 export default function Container() {
 

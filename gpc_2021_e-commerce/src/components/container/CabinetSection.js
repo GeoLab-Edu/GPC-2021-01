@@ -1,22 +1,15 @@
-
-// let cabinetButtons = [
-//     'ჩემი დეტალები',
-//     'ჩემი შეკვეთები',
-//     'მისამართები',
-//     'გადახდის მეთოდები',
-//     'ჩემი პაროლი',
-//     'ზღარბი ბარათი',
-//     'დახმარება'
-// ];
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext } from 'react';
+import { Route, Switch } from 'react-router';
+import { Link } from 'react-router-dom';
 import LogInContext from '../../LogInContext';
 import MyDetails from '../littleComponents/MyDetails';
+import MyOrders from './../littleComponents/MyOrders';
 import './../../styles/Cabinet.css';
+import Addresses from '../littleComponents/Addresses';
 
 export default function ProfileSection() {
     const {logedIn, setLogedIn} = useContext(LogInContext);
-
 
 
     return (
@@ -30,16 +23,22 @@ export default function ProfileSection() {
                 <div className='UserCabinet'>
                     <ul className='ProfileDivMiniSection'>
                         <li>
-                            <FontAwesomeIcon icon={['far','user']} mask='far' className='userIcon headerMainIcon'/>
-                            ჩემი დეტალები
+                            <Link to='/Profile/' exact>
+                                <FontAwesomeIcon icon={['far','user']} mask='far' className='userIcon headerMainIcon'/>
+                                ჩემი დეტალები
+                            </Link>
                         </li>
                         <li>
-                            <FontAwesomeIcon icon={['fas','box-open']} mask='far' className='userIcon headerMainIcon'/>
-                            ჩემი შეკვეთები
+                            <Link to='/Profile/MyOrders' exact>
+                                <FontAwesomeIcon icon={['fas','box-open']} mask='far' className='userIcon headerMainIcon'/>
+                                ჩემი შეკვეთები
+                            </Link>
                         </li>
                         <li>
-                            <FontAwesomeIcon icon={['far','building']} mask='far' className='userIcon headerMainIcon'/>
-                            მისამართები
+                            <Link to='/Profile/Addresses' exact>
+                                <FontAwesomeIcon icon={['far','building']} mask='far' className='userIcon headerMainIcon'/>
+                                მისამართები
+                            </Link>
                         </li>
                         <li>
                             <FontAwesomeIcon icon={['far','credit-card']} mask='far' className='userIcon headerMainIcon'/>
@@ -59,7 +58,10 @@ export default function ProfileSection() {
                         </li>
                     </ul>
                     <div className='ProfileDivRight'>
-                        <MyDetails/>
+                        <Route path='/Profile' exact component={MyDetails}/>
+                        <Route path='/Profile/MyOrders/'  component={MyOrders}/>
+                        <Route path='/Profile/Addresses' exact component={Addresses}/>
+
                     </div>
                 </div>
                 </>

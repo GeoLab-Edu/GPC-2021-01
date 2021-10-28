@@ -1,0 +1,22 @@
+.AddressesSection form fieldset{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-top: 2px solid var(--backgroundColorGrey);
+    padding: 1% 0 2%;
+}
+.addressSectionTitles {
+    background-color: var(--mainColor);
+    width: 45%;
+    padding: 2%;
+    border-radius: 4px;
+    color: var(--fontWhite);
+    font-family: var(--BPG);
+    margin: 1% 0;
+}
+.Address input {
+    border: 1px solid var(--backgroundColorGrey);
+    border-radius: 4px;
+    padding: 1%;
+    width: 45%;
+}

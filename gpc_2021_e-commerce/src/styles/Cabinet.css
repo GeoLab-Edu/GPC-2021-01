@@ -5,6 +5,10 @@
     grid-gap: 1%;
     width: 100%;
 }
+.ProfileSectionTitle {
+    width: 100%;
+    margin: 2% 0 2% 0.5%;
+}
 .ProfileDivMiniSection {
     border-radius: 10px;
     background-color: var(--backgroundColor);
@@ -18,6 +22,9 @@
     cursor: pointer;
     font-family: var(--BPGcaps);
     color: var(--fontLightBlue);
+}
+.ProfileDivMiniSection li a {
+    color: var(--fontLightBlue) ;
 }
 .ProfileDivMiniSection svg {
     color: var(--fontLightBlue);
