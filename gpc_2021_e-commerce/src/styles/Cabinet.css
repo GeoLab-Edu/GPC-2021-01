@@ -1,0 +1,97 @@
+.UserCabinet {
+    display: grid;
+    grid-template-columns: 30% 65%;
+    justify-content: stretch;
+    grid-gap: 1%;
+    width: 100%;
+}
+.ProfileDivMiniSection {
+    border-radius: 10px;
+    background-color: var(--backgroundColor);
+    border: 2px solid var(--secondaryColor);
+}
+.ProfileDivMiniSection li {
+    width: 100%;
+    padding: 10% 0;
+    border: 2 solid var(--secondaryColor);
+    box-sizing: border-box;
+    cursor: pointer;
+    font-family: var(--BPGcaps);
+    color: var(--fontLightBlue);
+}
+.ProfileDivMiniSection svg {
+    color: var(--fontLightBlue);
+}
+.ProfileDivRight {
+    border-radius: 10px;
+    border: 1px solid var(--secondaryColor);
+    padding: 4% 6%;
+}
+.MyDetails {
+    display: grid;
+    grid-row: auto;
+}
+.MyDetails input {
+    border-radius: 4px;
+    background-color: var(--backgroundColor);
+    border: 0.2px solid #CCCCCC;
+    max-width: 70%;
+    padding: 1%;
+    font-family: var(--BPG);
+    margin: 2.5% 0;
+}
+.MyDetails label {
+    grid-column-start: 1;
+    display: flex;
+    flex-direction: column;
+    color: var(--secondaryColor);
+    margin-bottom: 2%;
+}
+#image {
+    grid-column-start: 3;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    border-radius: 50%;
+    width: 15vw;
+    height: 15vw;
+    margin: 0 auto;
+    object-fit: cover;
+}
+.interestFieldRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.interestField {
+    max-width: 90%;
+    margin: 0 auto;
+    font-family: var(--BPG);
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 5;
+    grid-row-end: 7;
+}
+.interestField span {
+    color: var(--secondaryColor);
+}
+.interestFieldRow label {
+    grid-column-start: unset;
+    display: flex;
+    flex-direction: row;
+    padding: 2%;
+    align-items: center;
+    color: unset;
+}
+.interestFieldRow input {
+    margin-right: 2%;
+}
+.formSubmitBtn {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    background-color: var(--mainColor) !important;
+    color: var(--fontWhite);
+    border-radius: 10px !important;
+    width: 60%;
+    margin: 0 auto !important;
+    margin-top: 5% !important;
+
+}

@@ -501,29 +501,4 @@ button {
   column-gap: 5%;
 }
 
-/** Profile Page **/
-.ProfileDiv {
-  display: grid;
-  grid-template-columns: 30% 65%;
-  justify-content: space-between;
-  width: 100%;
-}
-.ProfileDivMiniSection {
-  border-radius: 10px;
-  background-color: var(--backgroundColor);
-  border: 2px solid var(--secondaryColor);
-  width: 100%;
-}
-.ProfileDivMiniSection li {
-  width: 100%;
-  padding: 10% 0;
-  border: 2 solid var(--secondaryColor);
-  box-sizing: border-box;
-  cursor: pointer;
-  font-family: var(--BPGcaps);
-  color: var(--fontLightBlue);
-}
-.ProfileDivMiniSection svg {
-  color: var(--fontLightBlue);
-}
 
