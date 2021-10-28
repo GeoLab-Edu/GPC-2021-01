@@ -17,6 +17,8 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import { useState, useMemo } from 'react/cjs/react.development';
 import CartContext, {ProductQuantity} from './CartContext';
+import LogInContext from './LogInContext';
+
 
 
 
@@ -28,31 +30,27 @@ function App() {
   const memorizedValue = useMemo(() => ({
     cartProducts, setCartProducts
   }), [cartProducts]);
-  const [cartProductQuantity, setCartProductQuantity] = useState(1);
+
+  const [logedIn, setLogedIn] = useState(true);
 
   return (
     <Router>
       <div className="App">
         <CartContext.Provider value={
-          // {
-          // cartProducts,
-          // setCartProducts
-          // }
           memorizedValue
         }
         >
-          <ProductQuantity.Provider value={{
-            cartProductQuantity,
-            setCartProductQuantity
-          }}
-          >
+          <LogInContext.Provider value= {{
+            logedIn,
+            setLogedIn
+          }}>
             <Header/>
             <Switch>
               <Container/>
             </Switch>
 
             <Footer/>
-          </ProductQuantity.Provider>
+          </LogInContext.Provider>
         </CartContext.Provider>
       </div>
     </Router>

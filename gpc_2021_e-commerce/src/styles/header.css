@@ -225,7 +225,7 @@
     align-items: flex-end;
     justify-content: flex-end;
     position: relative;
-    width: 30%;
+    width: 100%;
   }
   .headerMainIcon {
     color: var(--mainColor);
@@ -271,10 +271,10 @@
     top: 100%;
     right: 0;
     z-index: 99;
-    width: 98%;
+    width: 20vw;
     padding: 0 5%;
-    padding-top: 15%;
-    padding-bottom: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     background-color: var(--backgroundColor);
     border-radius: 0 0 10px 10px;
@@ -315,6 +315,8 @@
     color: var(--fontMain);
     font-size: 1.3rem;
     padding: 0;
+    width: max-content;
+    white-space: nowrap;
   }
   .logIn {
     display: flex;
