@@ -1,0 +1,25 @@
+{
+    "products": "Products",
+    "about": "About Us",
+    "pharmacies": "Pharmacies",
+    "search": "Search",
+    "cabinet": "Cabinet",
+    "authentic": "Authentication",
+    "passRecovery": "Forgot Password",
+    "login": "Log In",
+    "signUp": "Sign Up",
+    "fbBTN": "Sign In with Facebook",
+    "prof": "Profile",
+    "order": "Orders",
+    "card": "Card",
+    "notific": "Notifications",
+    "logOut": "Log Out",
+    "hello": "Hello",
+    "empty": "Cart is empty",
+    "visitCart": "Visit Cart",
+    "l": "GEL",
+    "del": "Delete",
+    "fav": "Favourites",
+    "buy": "Buy"
+
+}

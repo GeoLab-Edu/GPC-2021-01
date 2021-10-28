@@ -3,6 +3,7 @@ import React, { useReducer, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LogInContext from '../../LogInContext';
 import Button from './Button';
+import { useTranslation, initReactI18next } from "react-i18next";
 
 function loginReducer(state, action) {
     switch (action.type) {
@@ -55,6 +56,7 @@ function loginReducer(state, action) {
 };
 
 export default function LogIn() {
+    const {t} =useTranslation();
 
     const [state, dispatch] = useReducer(loginReducer, initialState);
     const { username, password, isLoading, error, isLoggedIn } = state;
@@ -62,7 +64,6 @@ export default function LogIn() {
 
     useEffect(() => {
         setLogedIn(!logedIn)
-        console.log(isLoggedIn)
     }, [state.isLoggedIn])
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -78,33 +79,29 @@ export default function LogIn() {
         <>
         {isLoggedIn ? (
         <>
-        {/* <h1>Welcome {username}!</h1>
-        <button onClick={() => dispatch({ type: 'logOut' })}>
-        Log Out
-        </button> */}
         <div className='ProfileDiv'>
             <ul>
                 <li className='ProfileDivSections'>
                     <FontAwesomeIcon icon={['far','user']} mask='far' className='userIcon headerMainIcon'/>
                     <Link to='Profile'>
-                        პროფილი
+                        {t('prof')}
                     </Link>
                 </li>
                 <li className='ProfileDivSections'>
                     <FontAwesomeIcon icon={['fas','box-open']} mask='far' className='userIcon headerMainIcon'/>
-                    შეკვეთები
+                    {t('order')}
                 </li>
                 <li className='ProfileDivSections'>
                     <FontAwesomeIcon icon={['fas','gift']} mask='far' className='userIcon headerMainIcon'/>
-                    ზღარბი ბარათი
+                    {t('card')}
                 </li>
                 <li className='ProfileDivSections'>
                     <FontAwesomeIcon icon={['far','bell']} mask='far' className='userIcon headerMainIcon'/>
-                    შეტყობინებები
+                    {t('notific')}
                 </li>
                 <li className='ProfileDivSections' onClick={() => dispatch({ type: 'logOut' })}>
                     <FontAwesomeIcon icon={['fas','sign-out-alt']} mask='far' className='userIcon headerMainIcon'/>
-                    გამოსვლა
+                    {t('logOut')}
                 </li>
             </ul>
         </div>
@@ -116,7 +113,7 @@ export default function LogIn() {
             onSubmit={onSubmit}
             >
             {error && <p className='error'>{error}</p>}
-            <h3 className='logInTitle'>ავტორიზაცია</h3>
+            <h3 className='logInTitle'>{t('authentic')}</h3>
             <div className='userInputDiv'>
                 <input
                     type='text' 
@@ -151,12 +148,12 @@ export default function LogIn() {
                 />
                 <FontAwesomeIcon icon='eye' className='logInIcons' />
             </div>
-            <a className='passwordRecoveryLink' href='/'>პაროლის აღდგენა</a>
+            <a className='passwordRecoveryLink' href='/'>{t('passRecovery')}</a>
             <div className='logInBtnsDiv'>
-                <Button type='submit' content={isLoading ? 'Logging in...' : 'შესვლა'}/>
-                <Button customClass='registerBtn' type='reset' content='რეგისტრაცია' />                        
+                <Button type='submit' content={isLoading ? 'Logging in...' : t('login')}/>
+                <Button customClass='registerBtn' type='reset' content={t('signUp')} />                        
             </div>
-            <Button customClass='fbBtn' content='FB-ით ავტორიზაცია'/>
+            <Button customClass='fbBtn' content={t('fbBTN')}/>
             </form>
             )
         }

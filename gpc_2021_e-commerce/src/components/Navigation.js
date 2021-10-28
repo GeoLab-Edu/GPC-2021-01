@@ -3,12 +3,15 @@ import { Link } from "react-router-dom"
 import AboutUs from "./miniNavigations/AboutUs"
 import Pharmacies from "./miniNavigations/Pharmacies";
 import ProductionNav from "./miniNavigations/ProductionNav";
+import { useTranslation, initReactI18next } from "react-i18next";
 
 
 export default function Navigation() {
     const [show, setShow] = useState(false);
     const [visible, setVisible] = useState(false);
     const [showProd, setShowProd] =useState(false);
+
+    const {t} = useTranslation();
 
 
     return (
@@ -19,9 +22,8 @@ export default function Navigation() {
                     onMouseLeave={()=> setShowProd(!showProd)}
                 >
                     <Link to='/Production'>
-                        პროდუქცია
+                        {t('products')}
                     </Link>
-                    {/* <ProductionNav/> */}
                     {
                         showProd ? <ProductionNav/> : null
                     }
@@ -31,7 +33,7 @@ export default function Navigation() {
                     onMouseEnter={() => setShow(!show)}
                     onMouseLeave={() => setShow(!show)}
                 >
-                    <span>ჩვენ შესახებ</span>
+                    <span>{t('about')}</span>
                     {show ? 
                         <AboutUs/>
                     : null
@@ -41,7 +43,7 @@ export default function Navigation() {
                     onMouseEnter={() => setVisible(!visible)}
                     onMouseLeave={() => setVisible(!visible)}
                 >
-                    <span>აფთიაქები</span>
+                    <span>{t('pharmacies')}</span>
                     {visible ?
                         <Pharmacies/>
                     : null                    

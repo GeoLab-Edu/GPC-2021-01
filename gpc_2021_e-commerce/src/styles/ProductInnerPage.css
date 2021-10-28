@@ -237,7 +237,7 @@
     justify-content: space-between;
     align-items: stretch;
 }
-.NewProductsDiv {
+.ProductInnerPage .NewProductsDiv {
     width: 25%;
     color: var(--fontLightBlue);
     padding: 1.5% 0;

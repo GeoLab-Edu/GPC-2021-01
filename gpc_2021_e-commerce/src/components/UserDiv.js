@@ -9,9 +9,10 @@ import '../styles/header.css';
 import './../styles/MiniCart.css';
 import LogIn from './littleComponents/LogIn';
 import LogInContext from '../LogInContext';
-
+import { useTranslation, initReactI18next } from "react-i18next";
 
 export default function UserDiv() {
+    const {t}=useTranslation();
 
     const [visible, setVisible] = useState(true);
     const {logedIn, setLogedIn} = useContext(LogInContext);
@@ -29,7 +30,6 @@ export default function UserDiv() {
         setPriceNumber(price.current[0].current)
     }, [cartProducts]);
 
-    console.log(cartProducts)
 
     function handleRemoveProduct(e) {
         const prodID = parseInt(e.target.value);
@@ -77,7 +77,7 @@ export default function UserDiv() {
                                             <h3 className='cartProdTitle'>{product.title}</h3>
                                             <div className='PricingWrap'>
                                                 <span>
-                                                    {product.price} ლარი
+                                                    {product.price} {t('l')}
                                                 </span>
                                                 <span>
                                                     {
@@ -96,22 +96,22 @@ export default function UserDiv() {
                                                         :
                                                         product.price * product.quantity
                                                     }
-                                                    ლარი
+                                                    {t('l')}
                                                 </span>
                                             </div>
 
                                         </div>
-                                        <button className='DeleteProdBtn' value={product.id} onClick={handleRemoveProduct}>წაშლა</button>
+                                        <button className='DeleteProdBtn' value={product.id} onClick={handleRemoveProduct}>{t('del')}</button>
                                     </div>
                                 )
                             })
                             :
                             <p className='EmptyCart'>
-                                კალათა ცარიელია
+                                {t('empty')}
                             </p>                         
                         }
                         <Link to='/Cart'>
-                            <Button customClass='VisitCartBtn' type='button' content='კალათის ნახვა'/>
+                            <Button customClass='VisitCartBtn' type='button' content={t('visitCart')}/>
                         </Link>
                     </div>                
                 </div>
@@ -123,9 +123,9 @@ export default function UserDiv() {
                 {
                     logedIn === true
                     ?
-                    <button className='loginOpenBtn'>გამარჯობა, ლინდა</button>
+                    <button className='loginOpenBtn'>{t('hello')}, ლინდა</button>
                     :
-                    <button className='loginOpenBtn'>კაბინეტი</button>
+                    <button className='loginOpenBtn'>{t('cabinet')}</button>
 
                 }
                 <div className='LogInOut'>

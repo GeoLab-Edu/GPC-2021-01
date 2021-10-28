@@ -10,11 +10,14 @@ import { useContext, useReducer } from "react";
 import RelatedProducts from "../littleComponents/RelatedProducts";
 import GlobalURL from './../../GlobalURL';
 import CartContext, {ProductQuantity} from "../../CartContext";
+import { useTranslation, initReactI18next } from "react-i18next";
 
 
 
 
 export default function ProductInnerPage() {
+
+    const {t} = useTranslation();
 
     let {productId} = useParams();
 
@@ -26,12 +29,10 @@ export default function ProductInnerPage() {
     const fetchItems = async () => {
         const data = await fetch(GlobalURL);
         const itemsData = await data.json();
-        console.log(itemsData.Products);
         setItems(itemsData.Products);
     }
 
     const productID = parseInt(productId);
-    // console.log(items[productID-1].img);
 
     const imgSrc = useRef(null);
 
@@ -62,7 +63,6 @@ export default function ProductInnerPage() {
 
     function handleClick(e) {
         setActive(e.target.id);
-        console.log(e.target.id)
     }
 
     //* Description Section */
@@ -85,7 +85,6 @@ export default function ProductInnerPage() {
     const {cartProducts, setCartProducts}=useContext(CartContext);
     const uniqueItems = [... items];
     const newCartProducts = [...cartProducts];
-    console.log(newCartProducts);
 
     const currentProduct = uniqueItems.filter((product) => product.id === productID)[0];
 
@@ -103,7 +102,6 @@ export default function ProductInnerPage() {
                     // }
                     return item;
                 })
-                console.log(updatedProducts)
                 setCartProducts(updatedProducts);
             } else {
                 // setCartProducts(newCartProducts);
@@ -111,7 +109,6 @@ export default function ProductInnerPage() {
 
             }         
     };
-    console.log(currentProduct, cartProducts)
     
 
     return (
@@ -160,12 +157,12 @@ export default function ProductInnerPage() {
                                             product.discountedPrice
                                             ?
                                             <div className='PricingWrap'>
-                                                <span className='PreviewPrice'>{product.discountedPrice} ლარი</span>
-                                                <span className='PreviewOldPrice'>{product.price} ლარი</span>
+                                                <span className='PreviewPrice'>{product.discountedPrice} {t('l')}</span>
+                                                <span className='PreviewOldPrice'>{product.price} {t('l')}</span>
                                             </div>
                                             :
                                             <div className='PricingWrap'>
-                                                <span className='PreviewPrice'>{product.price} ლარი</span>
+                                                <span className='PreviewPrice'>{product.price} {t('l')}</span>
                                             </div>
                                         }                                        
                                     </div>
@@ -177,11 +174,11 @@ export default function ProductInnerPage() {
                                         <div className='favourites'>
                                             <FontAwesomeIcon icon={['far','heart']} className='favIcon headerMainIcon' />
                                             <Link to='Favourites'>
-                                                ფავორიტები
+                                                {t('fav')}
                                             </Link>
                                         </div>
                                         
-                                        <BuyButton content='ყიდვა' onClick={addProductToCart}/>
+                                        <BuyButton content={t('buy')} onClick={addProductToCart}/>
                                     </div>
 
                                 </div>

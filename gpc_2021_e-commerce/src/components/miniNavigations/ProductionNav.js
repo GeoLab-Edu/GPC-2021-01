@@ -2,8 +2,11 @@ import axios from "axios";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
+import { useTranslation, initReactI18next } from "react-i18next";
 
 export default function ProductionNav() {
+    const {t} = useTranslation();
+
     const [productData, setProductData] = useState([]);
     const [filteredSubcategory, setFilteredSubCategory] = useState(productData);
 
@@ -20,7 +23,7 @@ export default function ProductionNav() {
     return (
         <div className='MiniNav Pharmacies'>
             <div className='MainSection'>
-                <h3 className='MiniNavTitle'>ძებნა</h3>
+                <h3 className='MiniNavTitle'>{t('search')}</h3>
                 <ul className='ProductList'>
                     {
                         uniqueProduct
