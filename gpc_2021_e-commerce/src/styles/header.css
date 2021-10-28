@@ -27,6 +27,15 @@
     font-family: var(--BPG);
     color: var(--fontMain);
     margin-bottom: 6%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .languages {
+    background-color: transparent;
+    color: var(--secondaryColor);
+    padding-left: 1%;
+    cursor: pointer;
   }
   .headerRightBottom {
     display: flex;

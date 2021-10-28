@@ -17,8 +17,18 @@ export default function Header() {
             </Link>
             <div className='headerRight'>
                 <div className='translateDiv'>
-                    <button className='languages' onClick={() => i18n.changeLanguage('ka')}>ქარ</button>
-                    <button className='languages' onClick={() => i18n.changeLanguage('en')}>eng</button>
+                    <button className='languages' onClick={
+                        (e) => {
+                            i18n.changeLanguage('ka');
+                            e.target.style.textDecoration = "underline"
+                        }
+                    }>ქარ</button>
+                    <button className='languages' onClick={
+                        (e) => {
+                            i18n.changeLanguage('en');
+                            e.target.style.textDecoration = "underline"
+                        }
+                    }>Eng</button>
                 </div>
                 <div className='headerRightBottom'>
                     <Navigation/>

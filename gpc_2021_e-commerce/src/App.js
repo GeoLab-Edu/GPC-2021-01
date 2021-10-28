@@ -35,7 +35,7 @@ i18n
         translation: require('./i18n/ka.json')
       }
     },
-    lng: "en", // if you're using a language detector, do not define the lng option
+    lng: "ka", // if you're using a language detector, do not define the lng option
     fallbackLng: "en",
     interpolation: {
       escapeValue: false // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape
